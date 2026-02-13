@@ -6,6 +6,8 @@ require_todo_scan = true
 enable_review_labels_effort = true
 persistent_comment = true
 
+[pr_compliance]
+enable_global_pr_compliance = true
 
 [github_app]
 pr_commands = [

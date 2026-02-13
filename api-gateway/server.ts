@@ -7,13 +7,13 @@ import { logger } from "../shared/logger";
 import { rateLimit } from "./middleware/rateLimit";
 const app = express();
 
+// Standard chain: json → correlation → rateLimit → routes → errorHandler
 app.use(express.json());
 app.use(correlation);
-
-app.use(routes);
-
-app.use(errorHandler);
 app.use(rateLimit);
+app.use(routes);
+app.use(errorHandler);
+
 app.listen(config.port, () => {
   logger.info("OrderFlow API started", {
     port: config.port
