@@ -7,6 +7,7 @@ OrderFlow is a lean, microservice-style backend for order processing. It aims to
 ## Table of Contents
 - Overview
 - Architecture
+- Directory Structure
 - Tech Stack
 - Getting Started
 - Configuration
@@ -42,6 +43,52 @@ notification-worker   → Background notification processing (placeholder)
 shared                → Shared types, config, utilities
 
 The API Gateway is the boundary. Services remain modular and independently testable.
+
+---
+
+## Directory Structure
+```
+Orderflow/
+├─ api-gateway/
+│  ├─ middleware/
+│  │  ├─ auth.ts
+│  │  ├─ correlation.ts
+│  │  ├─ error-handler.ts
+│  │  ├─ rateLimit.ts
+│  │  └─ rbac.ts
+│  ├─ routes.ts
+│  └─ server.ts
+├─ auth-service/
+│  ├─ auth.controller.ts
+│  ├─ auth.service.ts
+│  └─ token.ts
+├─ notification-worker/
+│  ├─ queue.ts
+│  └─ worker.ts
+├─ order-service/
+│  ├─ metrics.ts
+│  ├─ order.controller.ts
+│  ├─ order.repository.ts
+│  ├─ order.routes.ts
+│  └─ order.service.ts
+├─ payment-service/
+│  ├─ payment.client.ts
+│  └─ payment.service.ts
+├─ shared/
+│  ├─ config.ts
+│  ├─ enums.ts
+│  ├─ featureFlags.ts
+│  ├─ logger.ts
+│  ├─ retry.ts
+│  └─ types.ts
+├─ tests/
+│  ├─ auth.service.test.ts
+│  └─ order.service.test.ts
+├─ jest.config.js
+├─ package.json
+├─ tsconfig.json
+└─ README.md
+```
 
 ---
 
