@@ -1,0 +1,30 @@
+pr_compliances:
+  - title: "JWT Secret Must Not Be Default"
+    compliance_label: true
+    objective: "JWT secret must not use default development values"
+    success_criteria: "JWT secret loaded from environment variable and not equal to 'dev-secret'"
+    failure_criteria: "JWT secret equals 'dev-secret' or is hardcoded"
+
+  - title: "Payment Retry Must Be Safe"
+    compliance_label: true
+    objective: "Payment retry logic must prevent duplicate charges"
+    success_criteria: "Retry logic includes idempotency safeguard or controlled failure handling"
+    failure_criteria: "Retry mechanism without protection against duplicate execution"
+
+  - title: "Error Handler Must Not Leak Internals"
+    compliance_label: true
+    objective: "API error responses must not expose stack traces or internal objects"
+    success_criteria: "Sanitized error responses returned to client"
+    failure_criteria: "Stack traces or raw error objects exposed"
+
+  - title: "RBAC Middleware Must Be Applied"
+    compliance_label: true
+    objective: "Protected routes must enforce RBAC middleware"
+    success_criteria: "RBAC middleware applied to all protected endpoints"
+    failure_criteria: "Protected routes missing RBAC enforcement"
+
+  - title: "Rate Limiter Must Be Registered Before Routes"
+    compliance_label: true
+    objective: "Rate limiting middleware must be applied before route handlers"
+    success_criteria: "Rate limiter middleware registered before routes"
+    failure_criteria: "Rate limiter registered after route definitions"

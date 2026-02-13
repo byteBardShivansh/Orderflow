@@ -1,0 +1,21 @@
+[pr_reviewer]
+require_security_review = true
+require_ticket_analysis_review = true
+require_tests_review = true
+require_todo_scan = true
+enable_review_labels_effort = true
+persistent_comment = true
+
+
+[github_app]
+pr_commands = [
+    "/describe --pr_description.publish_description_as_comment=true",
+    "/review",
+    "/compliance"
+]
+
+handle_push_trigger = true
+push_commands = [
+    "/review",
+    "/compliance"
+]
