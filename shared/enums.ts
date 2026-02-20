@@ -7,5 +7,6 @@ export enum Role {
     CREATED = "CREATED",
     PAID = "PAID",
     FAILED = "FAILED",
-    SHIPPED = "SHIPPED"
+    SHIPPED = "SHIPPED",
+    CANCELLED = "CANCELLED"
   }  

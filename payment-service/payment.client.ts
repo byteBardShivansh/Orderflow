@@ -18,5 +18,20 @@ export const paymentClient = {
         throw new Error("Payment failed");
       }
     }, config.maxRetries);
+  },
+  refund: async (orderId: string, amount: number): Promise<void> => {
+    await retry(async () => {
+      logger.info("Attempting payment refund", { orderId });
+
+      const response = await axios.post(
+        `${config.paymentBaseUrl}/refund`,
+        { orderId, amount },
+        { timeout: config.requestTimeoutMs }
+      );
+
+      if (response.status !== 200) {
+        throw new Error("Refund failed");
+      }
+    }, config.maxRetries);
   }
 };
