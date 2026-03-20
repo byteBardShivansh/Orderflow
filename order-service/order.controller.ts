@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { placeOrder, getOrders } from "./order.service";
+import { placeOrder, getOrders, cancelOrder } from "./order.service";
 
 export const createOrderHandler = async (
   req: Request,
@@ -13,7 +13,7 @@ export const createOrderHandler = async (
   }
 
   try {
-    const order = await placeOrder(user.id, amount);
+    const order = await placeOrder(user.id, amount, req);
     return res.status(201).json(order);
   } catch (err: any) {
     return res.status(500).json({ error: err.message });
@@ -29,4 +29,19 @@ export const listOrdersHandler = (
 
   const orders = getOrders(page, limit);
   return res.json(orders);
+};
+
+export const cancelOrderHandler = async (
+  req: Request,
+  res: Response
+) => {
+  const { id } = req.params as any;
+
+  try {
+    const order = await cancelOrder(id);
+    return res.status(200).json(order);
+  } catch (err: any) {
+    const status = err?.statusCode || 500;
+    return res.status(status).json({ error: err.message });
+  }
 };
