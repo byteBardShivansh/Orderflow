@@ -13,7 +13,7 @@ export const createOrderHandler = async (
   }
 
   try {
-    const order = await placeOrder(user.id, amount);
+    const order = await placeOrder(user.id, amount, req);
     return res.status(201).json(order);
   } catch (err: any) {
     return res.status(500).json({ error: err.message });
